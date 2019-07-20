@@ -13,11 +13,13 @@ def emailView(request):
         if form.is_valid():
             settings.EMAIL_HOST_PASSWORD='raionzo@25'
             settings.EMAIL_HOST_USER = 'raionzouser@gmail.com'
-            subject = form.cleaned_data['subject']
+            name = form.cleaned_data['name']
             from_email = form.cleaned_data['from_email']
-            message = form.cleaned_data['message']
+            var_email = form.cleaned_data['from_email']
+            mobile_no = form.cleaned_data['mobile_no']
+            messages = form.cleaned_data['messages']
             try:
-                send_mail(subject, message, from_email, ['raionzoiarc@gmail.com'])
+                send_mail(from_email, "Name :" +  name + " " + "Mobile :" + mobile_no + " "+ "Message :" + messages, var_email, ['raionzoiarc@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('success')
